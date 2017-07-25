@@ -17,13 +17,11 @@ $db = $database->getConnection();
 $category = new Category($db);
  
 // set ID property of category to be edited
-//$category->id = isset($_POST['id']) ? $_POST['id'] : die();
-$category->id = 1;
+$category->id = isset($_POST['id']) ? $_POST['id'] : die();
 
-echo $_POST['id'];
 // read the details of category to be edited
 $category->readOne();
- 
+
 // create array
 $category_arr = array(
     "id" =>  $category->id,
@@ -31,7 +29,7 @@ $category_arr = array(
     "description" => $category->description,
 );
 
- 
+http_response_code(200);
 // make it json format
 echo json_encode(array("response" => $category_arr, "error" => false), JSON_PRETTY_PRINT);
 ?>

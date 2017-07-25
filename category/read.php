@@ -19,7 +19,7 @@ $stmt = $category->read();
 $num = $stmt->rowCount();
  
 // check if more than 0 record found
-if($num>0){
+if($num >= 0){
  
     // products array
     $categories_arr=array();
@@ -43,10 +43,12 @@ if($num>0){
         array_push($categories_arr["records"], $category_item);
     }
  
+    http_response_code(200);
     echo json_encode(array("response" => $categories_arr, "error" => false), JSON_PRETTY_PRINT);
 }
  
 else{
+    http_response_code(404);
     echo json_encode(
         array("response" => "No categories found.", "error" => true), JSON_PRETTY_PRINT);
 }
